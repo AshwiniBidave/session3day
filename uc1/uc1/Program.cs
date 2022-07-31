@@ -9,13 +9,15 @@ namespace uc1
         public const int Is_Full_Time = 2;
         public const int Emp_Rate_Per_Hour = 20;
         public const int Num_Of_Working_Days = 20;
+        public const int Max_Hrs_In_Month = 100;
         static void Main(string[] args)
         {
             int empHour = 0;
-            int empWage = 0;
-            int totalEmpWage = 0;
-            for (int day = 0; day < Num_Of_Working_Days; day++)
+            int totalworkingdays = 0;
+            int totalEmpHrs = 0;
+            while (totalEmpHrs <= Max_Hrs_In_Month && totalworkingdays < Num_Of_Working_Days)
             {
+                totalworkingdays++;
                 Random random = new Random();
                 int empcheck = random.Next(0, 3);
                 switch (empcheck)
@@ -30,10 +32,13 @@ namespace uc1
                         empHour = 0;
                         break;
                 }
-                empWage = empHour * Emp_Rate_Per_Hour;
-                totalEmpWage = totalEmpWage + empWage;
-                Console.WriteLine("Emp Wage : " + empWage);
+                totalEmpHrs += empHour;
+                Console.WriteLine("Days: " + totalworkingdays + "  Emp hrs :" + empHour);
             }
+
+                int totalEmpWage = totalEmpHrs + Emp_Rate_Per_Hour;
+                Console.WriteLine("Emp Wage : " + totalEmpWage);
+            
 
         }
     }
